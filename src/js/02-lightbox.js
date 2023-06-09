@@ -1,4 +1,5 @@
 import { galleryItems } from './gallery-items.js';
+
 // Change code below this line
 
 console.log(galleryItems);
@@ -11,23 +12,16 @@ function createGalleryItemsMarkup(galleryItems) {
     return galleryItems.map(({ preview, original, description }) => {
         return `
 
-        <li class="gallery__item">
-        <a class="gallery__link" href="${original}">
-       <img class="${original}" 
+    <li class="gallery__item">
+       <a class="gallery__link" href="${original}">
+       <img class="gallery__image" 
        src="${preview}" 
-       alt=""
-       title="${description}" />
+       alt="${description}"
+       />
    </a>
 </li>`
     }).join("")
 }
 // Usage
-let gallery = new SimpleLightbox('.gallery a');
-gallery.on("captionPosition.simplelightbox", function () {});
+const gallery__item = new SimpleLightbox('.gallery__item a', { captionsData: "alt", captionDelay: 250 });
 
-// galleryItems.on('show.simplelightbox', function () {
-//     console.log(galleryItems);
-// });
-// Markup
-// captionDelay Default '' Type string
-// console.log(lightbox.captionPosition() );
