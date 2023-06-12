@@ -43,22 +43,42 @@ function onGalleryItemsContainerClick(e) {
     console.log(swatchEl.dataset.source);
     onModalOpen(swatchEl.dataset.source)
 }
-let instance;
+// let instance;
+// function onModalOpen(source) {
+//     instance = basicLightbox.create(`
+//     <img src="${source}">
+//     `)
+//     instance.show()
+//     document.addEventListener("keydown", onModalClose)
+// }
+// // onModalOpen:(instance) {}
+// // 
+// function onModalClose(e) {
+//     if (e.which === 27) {
+//         e.preventDefault()
+//         instance.close(() => console.log('lightbox not visible anymore'))
+//         document.removeEventListener("keydown", onModalClose)
+//     }
+// }
+// // onModalClose:(instance){}
+
 function onModalOpen(source) {
-    instance = basicLightbox.create(`
+    const instance = basicLightbox.create(`
     <img src="${source}">
-    `)
+    `, {
+        onShow: () => {
+            document.addEventListener("keydown", onModalClose)
+        },
+        onClose: () => {
+            document.removeEventListener("keydown", onModalClose)
+        }
+    })
     instance.show()
-    document.addEventListener("keydown", onModalClose)
-}
-// onModalOpen:(instance) {}
-// 
-function onModalClose(e) {
-    if (e.which === 27) {
-        e.preventDefault()
-        instance.close(() => console.log('lightbox not visible anymore'))
-        document.removeEventListener("keydown", onModalClose)
+
+    function onModalClose(e) {
+        if (e.which === 27) {
+            e.preventDefault()
+            instance.close()
+        }
     }
 }
-// onModalClose:(instance){}
-
