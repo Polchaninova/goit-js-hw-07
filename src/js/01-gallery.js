@@ -51,7 +51,8 @@ function onModalOpen(source) {
     instance.show()
     document.addEventListener("keydown", onModalClose)
 }
-
+// onModalOpen:(instance) {}
+// 
 function onModalClose(e) {
     if (e.which === 27) {
         e.preventDefault()
@@ -59,4 +60,5 @@ function onModalClose(e) {
         document.removeEventListener("keydown", onModalClose)
     }
 }
-// 
+// onModalClose:(instance){}
+
